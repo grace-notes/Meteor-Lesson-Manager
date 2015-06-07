@@ -1,0 +1,24 @@
+# Meteor packages used by this project, one per line.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+meteor-platform
+insecure
+coffeescript
+accounts-google
+ian:accounts-ui-bootstrap-3
+ian:bootstrap-3
+dwatson:meteor-node-imap
+aroman:mail-listener2
+
+jparker:crypto-base64
+iron:router
+meteorhacks:npm
+
+
+npm-container
+aldeed:autoform
+aldeed:collection2
+summernote:summernote
+fortawesome:fontawesome

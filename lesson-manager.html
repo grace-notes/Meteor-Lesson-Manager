@@ -1,0 +1,69 @@
+<head>
+  <title>lesson-manager</title>
+</head>
+
+<template name="DefaultLayout">
+  <div class="container">
+      {{> yield}}
+  </div>
+</template>
+
+<template name="Home">
+  <ul class="nav">
+    <li>{{#linkTo route="messages"}}Messages{{/linkTo}}</li>
+  </ul>
+</template>
+
+<template name="Messages">
+<h1>Messages</h1>
+<table class="table table-striped">
+  <tbody>
+  {{#each .}}{{> MessageRow}}{{/each}}
+  </tbody>
+</table>
+</template>
+
+<template name="Lesson">
+<div class="lesson">
+  {{#linkTo route="messages"}}Lessons{{/linkTo}} : {{#linkTo route="lesson.view" data=this}}{{title}}{{/linkTo}}
+  <h1>{{title}}
+  <small>{{#with code}}[{{.}}]{{/with}}</small></h1>
+  <div class="well">
+    {{#linkTo class="btn btn-default" route="lesson.edit"}}<i class="fa fa-edit"></i> Edit{{/linkTo}}
+    {{#linkTo class="btn btn-default" route="lesson.send"}}<i class="fa fa-envelope"></i> Send{{/linkTo}}
+  </div>
+  <div class="lesson-content well">
+    {{{html}}}
+  </div>
+</div>
+</template>
+
+<template name="LessonSend">
+<div class="lesson">
+  <a href="/">Lessons</a> : <a href="/lesson/{{_id}}">{{title}}</a>
+  <h1>{{title}}
+  <small>{{#with code}}[{{.}}]{{/with}}</small></h1>
+  <div class="lesson-content well">
+    {{{html}}}
+  </div>
+</div>
+</template>
+
+<template name="LessonEdit">
+  <a href="/">Lessons</a> : <a href="/lesson/{{_id}}">{{title}}</a>
+  <h1>Edit Lesson</h1>
+  {{> quickForm collection="Lessons" id="EditLessonForm" type="update" doc=this}}
+</template>
+
+<template name="MessageRow">
+<tr>
+  <td>
+    <a href="/lesson/{{_id}}"><i class="fa fa-file-text"></i></a>
+    <a href="/lesson/{{_id}}">{{#with code}}{{.}} :{{/with}} {{title}}</a></td>
+  <td>
+      {{#each attachments}}
+        <a target="_blank" href="/download/{{../_id}}/{{fileName}}">{{fileName}}</a>
+      {{/each}}
+  </td>
+</tr>
+</template>
